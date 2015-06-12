@@ -47,9 +47,9 @@
    	// Encrypt pages
     $app->get('/encrypt/?', function () use ($app) {
     	// Access-controlled page
-    	if (!$app->user->checkAccess('encrypt')){
+    	/*if (!$app->user->checkAccess('encrypt')){
     		$app->notFound();
-    	}
+    	}*/
     	
     	$page_schema = UF\PageSchema::load("default", $app->config('schema.path') . "/pages/pages.json");
     	
