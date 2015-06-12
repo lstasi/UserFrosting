@@ -44,6 +44,26 @@
         ]);          
     });
     
+   	// Encrypt pages
+    $app->get('/encrypt/?', function () use ($app) {
+    	// Access-controlled page
+    	if (!$app->user->checkAccess('encrypt')){
+    		$app->notFound();
+    	}
+    	
+    	$page_schema = UF\PageSchema::load("default", $app->config('schema.path') . "/pages/pages.json");
+    	
+    	$app->render('encrypt.html', [
+    			'page' => [
+    			'author' =>         $app->site->author,
+    			'title' =>          "Encrypt",
+    			'description' =>    "Your user dashboard.",
+   				'alerts' =>         $app->alerts->getAndClearMessages(),
+    			'schema' =>         $page_schema
+   			]
+		]);
+    });
+    
     $app->get('/zerg/?', function () use ($app) {    
         // Access-controlled page
         if (!$app->user->checkAccess('uri_zerg')){

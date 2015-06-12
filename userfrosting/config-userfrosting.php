@@ -5,7 +5,7 @@
     use \Slim\Extras\Middleware\CsrfGuard;
    
     // Set your timezone here
-    date_default_timezone_set('America/New_York');
+    date_default_timezone_set('UTC');
        
     /* Instantiate the Slim application */
     $app = new \Slim\Slim([
