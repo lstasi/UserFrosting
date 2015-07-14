@@ -13,28 +13,55 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
-            <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-12">            
-                    <div class="alert alert-success alert-dismissable">
-                      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                      Welcome to UserFrosting!  The dashboard and admin account features are based on the SB Admin 2 template by <a class="alert-link" href="http://startbootstrap.com">Start Bootstrap</a>. Other key frameworks and plugins used in this system are:
-                      <br><a class="alert-link" href='http://www.slimframework.com/'>Slim</a>: a microframework for PHP
-                      <br><a class="alert-link" href='http://twig.sensiolabs.org/'>Twig</a>: The flexible, fast, and secure
-template engine for PHP                      
-                      <br><a class="alert-link" href='http://http://jquery.com/'>jQuery 1.11.2</a>
-                      <br><a class="alert-link" href='http://getbootstrap.com/'>Twitter Bootstrap 3.3.2</a>
-                      <br><a class="alert-link" href='http://fontawesome.io/'>Font Awesome</a>
-                      <br><a class="alert-link" href='http://formvalidation.io/'>FormValidation</a>: client-side input validation
-                      <br><a class="alert-link" href='http://tablesorter.com/docs/'>Tablesorter 2.17.7</a>: sortable, searchable tables
-                      <br>The <a class="alert-link" href='http://www.bootstrap-switch.org/'>Bootstrap Switch</a> component by Mattia Larentis,Peter Stein, and Emanuele Marchi
-                      <br><a class="alert-link" href="https://select2.github.io/">Select2</a>: the jQuery replacement for search boxes
-                      <br>All components are copyright of their respective creators.
-                    </div>
-                </div>
-            </div>
+            <form name="register" method="post" action="{{site.uri.public}}/encrypt" class="form-horizontal">
+	        {% include 'common/components/csrf.html' %}
+	            <div class="row">
+					<div class="col-sm-12">
+						<div class="form-group">
+							<label class="control-label  col-sm-4">Website</label>
+							<div class="col-sm-8">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="fa fa-fw fa-edit"></i></span> <input type="text"
+										class="form-control" name="website" autocomplete="off"
+										value="" placeholder="Website">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label  col-sm-4">Username</label>
+							<div class="col-sm-8">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="fa fa-fw fa-edit"></i></span> <input type="text"
+										class="form-control" name="user_name" autocomplete="off"
+										value="" placeholder="User name">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label  col-sm-4">Password</label>
+							<div class="col-sm-8">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="fa fa-fw fa-edit"></i></span> <input type="text"
+										class="form-control" name="password" autocomplete="off"
+										value="" placeholder="Password">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<div>
+							<button type="submit" name="btn_send" class="btn btn-success"
+								data-loading-text="Please wait...">Encrypt</button>
+						</div>
+					</div>
+				</div>
+			</form>        
             
-            <!-- /.row -->
             {% include 'components/footer.html' %}    
         </div>
         <!-- /#page-wrapper -->

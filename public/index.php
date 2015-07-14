@@ -43,7 +43,33 @@
             ]
         ]);          
     });
-    
+    // Encrypt management pages
+    $app->get('/secret/:action/?', function ($action) use ($app) {
+    		// Forward to installation if not complete
+    		if (!isset($app->site->install_status) || $app->site->install_status == "pending"){
+    			$app->redirect($app->urlFor('uri_install'));
+    		}
+    	
+    		$get = $app->request->get();
+    	
+    		$controller = new UF\SecretController($app);
+    	
+    		switch ($action) {
+    			case "encrypt":               return $controller->encrypt();
+    			case "decrypt":              return $controller->decrypt();
+    			default:                    
+    				$page_schema = UF\PageSchema::load("default", $app->config('schema.path') . "/pages/pages.json");
+			    	$app->render('encrypt.html', [
+			    			'page' => [
+			    			'author' =>         $app->site->author,
+			    			'title' =>          "Encrypt",
+			    			'description' =>    "Your user dashboard.",
+			   				'alerts' =>         $app->alerts->getAndClearMessages(),
+			    			'schema' =>         $page_schema
+			   			]
+					]);
+    		}
+    });
    	// Encrypt pages
     $app->get('/encrypt/?', function () use ($app) {
     	// Access-controlled page
@@ -51,17 +77,7 @@
     		$app->notFound();
     	}*/
     	
-    	$page_schema = UF\PageSchema::load("default", $app->config('schema.path') . "/pages/pages.json");
     	
-    	$app->render('encrypt.html', [
-    			'page' => [
-    			'author' =>         $app->site->author,
-    			'title' =>          "Encrypt",
-    			'description' =>    "Your user dashboard.",
-   				'alerts' =>         $app->alerts->getAndClearMessages(),
-    			'schema' =>         $page_schema
-   			]
-		]);
     });
     
     $app->get('/zerg/?', function () use ($app) {    
